@@ -4,7 +4,7 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { cwd } from "node:process";
 import * as fs from "fs";
-import { ZwiftWorkoutParser } from "./ZwiftWorkoutParser.js";
+import { ZwiftWorkoutParser } from "../library/ZwiftWorkoutParser.js";
 
 yargs(hideBin(process.argv)).command(
   "$0 [filepath]",

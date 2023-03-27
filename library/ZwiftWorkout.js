@@ -45,6 +45,9 @@ export class ZwiftWorkout {
 
     this.contents[0].workout_file.find((entry) => entry.workout).workout =
       resultWorkoutBlocks;
+    this.contents[0].workout_file.find((entry) => entry.name).name[0][
+      "#text"
+    ] += " (optimized)";
 
     this.reportOptimizationStatistics(statistics);
   }

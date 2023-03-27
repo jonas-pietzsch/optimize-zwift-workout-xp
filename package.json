@@ -1,13 +1,13 @@
 {
-  "name": "xp-optimize-zwift-workouts",
+  "name": "optimize-zwift-workout-xp",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "cli/index.js",
   "type": "module",
   "author": "Jonas Pietzsch <jonas.pietzsch93@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "demo": "node index.js sample.zwo",
+    "start": "node cli/index.js",
+    "demo": "node cli/index.js sample.zwo",
     "prettier:write": "npx prettier --write .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },

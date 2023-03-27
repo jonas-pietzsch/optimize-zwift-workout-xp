@@ -1,4 +1,4 @@
-import { ZwiftWorkoutParser } from "./ZwiftWorkoutParser";
+import { ZwiftWorkoutParser } from "./ZwiftWorkoutParser.js";
 import * as fs from "fs";
 
 describe("ZwiftWorkoutParser", () => {
