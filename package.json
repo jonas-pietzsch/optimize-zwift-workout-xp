@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node cli/index.js",
     "demo": "node cli/index.js sample.zwo",
+    "build:pages": "rm -fr docs/ && cd web && yarn build --outDir ../docs --base '/optimize-zwift-workout-xp/'",
     "prettier:write": "npx prettier --write .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
