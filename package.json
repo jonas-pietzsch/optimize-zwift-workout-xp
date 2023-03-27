@@ -1,0 +1,24 @@
+{
+  "name": "xp-optimize-zwift-workouts",
+  "version": "0.0.1",
+  "main": "index.js",
+  "type": "module",
+  "author": "Jonas Pietzsch <jonas.pietzsch93@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "demo": "node index.js sample.zwo",
+    "prettier:write": "npx prettier --write .",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.1.3",
+    "yargs": "^17.7.1"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "prettier": "^2.8.7"
+  },
+  "description": "Optimizes Zwift workout files (.zwo) so that they leverage all kinds of XP boosting",
+  "repository": "https://github.com/jverhoelen/xp-optimize-zwift-workouts"
+}

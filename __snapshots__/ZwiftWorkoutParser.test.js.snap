@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ZwiftWorkoutParser should parse zwo file contents to an object structure that preserves sorting, type and attribute of workout segments 1`] = `
+[
+  {
+    "workout_file": [
+      {
+        "author": [
+          {
+            "#text": "Somebody",
+          },
+        ],
+      },
+      {
+        "name": [
+          {
+            "#text": "Something",
+          },
+        ],
+      },
+      {
+        "description": [
+          {
+            "#text": "Some description",
+          },
+        ],
+      },
+      {
+        "sportType": [
+          {
+            "#text": "bike",
+          },
+        ],
+      },
+      {
+        "tags": [],
+      },
+      {
+        "workout": [
+          {
+            ":@": {
+              "attributeDuration": "900",
+              "attributePowerHigh": "0.65",
+              "attributePowerLow": "0.45",
+            },
+            "Warmup": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "180",
+              "attributePower": "0.6",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "180",
+              "attributePower": "0.7",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "180",
+              "attributePower": "0.8",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "180",
+              "attributePower": "0.9",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "300",
+              "attributePower": "0.55",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeOffDuration": "30",
+              "attributeOffPower": "0.53",
+              "attributeOnDuration": "30",
+              "attributeOnPower": "1.33",
+              "attributeRepeat": "10",
+            },
+            "IntervalsT": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "300",
+              "attributePower": "0.55",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeOffDuration": "30",
+              "attributeOffPower": "0.53",
+              "attributeOnDuration": "30",
+              "attributeOnPower": "1.33",
+              "attributeRepeat": "10",
+            },
+            "IntervalsT": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "300",
+              "attributePower": "0.55",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeOffDuration": "30",
+              "attributeOffPower": "0.53",
+              "attributeOnDuration": "30",
+              "attributeOnPower": "1.33",
+              "attributeRepeat": "10",
+            },
+            "IntervalsT": [],
+          },
+          {
+            ":@": {
+              "attributeDuration": "1080",
+              "attributePowerHigh": "0.43",
+              "attributePowerLow": "0.63",
+            },
+            "Cooldown": [],
+          },
+        ],
+      },
+    ],
+  },
+]
+`;

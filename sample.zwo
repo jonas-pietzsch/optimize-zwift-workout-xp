@@ -1,0 +1,33 @@
+<workout_file>
+  <author>Somebody</author>
+  <name>Something</name>
+  <description>Some description</description>
+  <sportType>bike</sportType>
+  <tags/>
+  <workout>
+    <Warmup Duration="900" PowerHigh="0.65" PowerLow="0.45">
+    </Warmup>
+    <SteadyState Duration="180" Power="0.6">
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.7">
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.8">
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.9">
+    </SteadyState>
+    <SteadyState Duration="300" Power="0.55">
+    </SteadyState>
+    <IntervalsT Repeat="10" OnDuration="30" OnPower="1.33" OffDuration="30" OffPower="0.53">
+    </IntervalsT>
+    <SteadyState Duration="300" Power="0.55">
+    </SteadyState>
+    <IntervalsT Repeat="10" OnDuration="30" OnPower="1.33" OffDuration="30" OffPower="0.53">
+    </IntervalsT>
+    <SteadyState Duration="300" Power="0.55">
+    </SteadyState>
+    <IntervalsT Repeat="10" OnDuration="30" OnPower="1.33" OffDuration="30" OffPower="0.53">
+    </IntervalsT>
+    <Cooldown Duration="1080" PowerHigh="0.43" PowerLow="0.63">
+    </Cooldown>
+  </workout>
+</workout_file>
