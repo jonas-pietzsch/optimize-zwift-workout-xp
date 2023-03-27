@@ -6,6 +6,10 @@
 
 **How?** This tool modifies Zwift workout files (.zwo) so that they leverage several [XP hacking approaches](https://zwiftinsider.com/xp-for-cycling-workouts/). It will not change its intensity, duration or resulting workload!
 
+## Web UI
+
+Visit [jonas.verhoelen.de/optimize-zwift-workout-xp/](https://jonas.verhoelen.de/optimize-zwift-workout-xp/) to use this tool through your browser!
+
 ## Command line interface
 
 The CLI can optimize single .zwo files. To use it, follow these steps:
@@ -19,4 +23,4 @@ See the available options using `yarn start --help`
 
 ## What's next?
 
-Other than the CLI, a web UI and JavaScript library will be published soon! Stay tuned.
+The web UI will be improved with more information and configuration options. CLI and core library may be published via npm.js eventually.
