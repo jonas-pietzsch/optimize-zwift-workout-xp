@@ -39,7 +39,7 @@ exports[`ZwiftWorkoutParser should parse zwo file contents to an object structur
         "workout": [
           {
             ":@": {
-              "attributeDuration": "900",
+              "attributeDuration": "920",
               "attributePowerHigh": "0.65",
               "attributePowerLow": "0.45",
             },
@@ -47,6 +47,15 @@ exports[`ZwiftWorkoutParser should parse zwo file contents to an object structur
           },
           {
             ":@": {
+              "attributeDuration": "20",
+              "attributePowerHigh": "1",
+              "attributePowerLow": "0.7",
+            },
+            "Warmup": [],
+          },
+          {
+            ":@": {
+              "attributeCadence": "70",
               "attributeDuration": "180",
               "attributePower": "0.6",
             },
@@ -54,6 +63,7 @@ exports[`ZwiftWorkoutParser should parse zwo file contents to an object structur
           },
           {
             ":@": {
+              "attributeCadence": "80",
               "attributeDuration": "180",
               "attributePower": "0.7",
             },
@@ -61,6 +71,7 @@ exports[`ZwiftWorkoutParser should parse zwo file contents to an object structur
           },
           {
             ":@": {
+              "attributeCadence": "90",
               "attributeDuration": "180",
               "attributePower": "0.8",
             },
@@ -68,6 +79,7 @@ exports[`ZwiftWorkoutParser should parse zwo file contents to an object structur
           },
           {
             ":@": {
+              "attributeCadence": "100",
               "attributeDuration": "180",
               "attributePower": "0.9",
             },
@@ -75,6 +87,15 @@ exports[`ZwiftWorkoutParser should parse zwo file contents to an object structur
           },
           {
             ":@": {
+              "attributeCadence": "100",
+              "attributeDuration": "20",
+              "attributePower": "1.2",
+            },
+            "SteadyState": [],
+          },
+          {
+            ":@": {
+              "attributeCadence": "85",
               "attributeDuration": "300",
               "attributePower": "0.55",
             },

@@ -8,9 +8,8 @@ describe("ZwiftWorkout", () => {
         fs.readFileSync("./sample.zwo")
       );
       sampleWorkout.optimize({
-        minimumDuration: 60,
-        intervalsDuration: 30,
-        recoveryIntervalDuration: 60,
+        minimumDuration: 120,
+        intervalsDuration: 120,
       });
 
       expect(sampleWorkout.contents).toMatchSnapshot();

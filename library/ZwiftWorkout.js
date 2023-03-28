@@ -18,27 +18,27 @@ export class ZwiftWorkout {
       (entry) => entry.workout
     ).workout;
     const resultWorkoutBlocks = currentWorkoutBlocks
-      .map((segment) => {
-        if (segment.SteadyState) {
+      .map((block) => {
+        if (block.SteadyState) {
           return this.transformSteadyStateBlockToIntervalBlock(
-            segment,
+            block,
             statistics,
             options
           );
-        } else if (segment.Warmup) {
-          return this.transformWarmupBlockToIntervalBlock(
-            segment,
+        } else if (block.Warmup) {
+          return this.transformWarmupOrCooldownBlockToIntervalBlock(
+            block,
             statistics,
             options
           );
-        } else if (segment.Cooldown) {
-          return this.transformWarmupBlockToIntervalBlock(
-            segment,
+        } else if (block.Cooldown) {
+          return this.transformWarmupOrCooldownBlockToIntervalBlock(
+            block,
             statistics,
             options
           );
         } else {
-          return segment;
+          return block;
         }
       })
       .flatMap((item) => item);
@@ -49,96 +49,172 @@ export class ZwiftWorkout {
       "#text"
     ] += " (optimized)";
 
-    this.reportOptimizationStatistics(statistics);
+    const optimizationResults = this.calculateOptimizationResult(statistics);
+    this.reportOptimizationResults(optimizationResults);
+    return statistics;
   }
 
   transformSteadyStateBlockToIntervalBlock(block, statistics, options) {
     const { minimumDuration, intervalsDuration } = options;
-    const attributePower = Number.parseFloat(block[":@"].attributePower);
-    const attributeDuration = Number.parseInt(block[":@"].attributeDuration);
+    const { attributePower, attributeDuration, ...otherBlockAttributes } =
+      block[":@"];
+    const attributePowerParsed = Number.parseFloat(attributePower);
+    const attributeDurationParsed = Number.parseInt(attributeDuration);
 
-    if (attributeDuration >= minimumDuration) {
-      const amountOfChoppedIntervals = Math.ceil(
-        attributeDuration / intervalsDuration
+    if (attributeDurationParsed >= minimumDuration) {
+      const amountOfIntervalBlockReplacements =
+        attributeDurationParsed / intervalsDuration;
+      const amountOfWholeIntervalBlockReplacements = Math.floor(
+        amountOfIntervalBlockReplacements
       );
-      const replacementSegments = Array.from(
-        Array(amountOfChoppedIntervals).keys()
+      const replacementBlocks = Array.from(
+        Array(amountOfWholeIntervalBlockReplacements).keys()
       ).map(() => ({
         IntervalsT: [],
         ":@": {
+          ...otherBlockAttributes,
           attributeRepeat: "1",
           attributeOnDuration: `${intervalsDuration / 2}`,
-          attributeOnPower: `${attributePower}`,
+          attributeOnPower: `${attributePowerParsed}`,
           attributeOffDuration: `${intervalsDuration / 2}`,
-          attributeOffPower: `${attributePower}`,
+          attributeOffPower: `${attributePowerParsed}`,
         },
       }));
+
+      const partialIntervalBlockReplacementIsRequired =
+        amountOfIntervalBlockReplacements >
+        amountOfWholeIntervalBlockReplacements;
+      if (partialIntervalBlockReplacementIsRequired) {
+        const partialDuration =
+          intervalsDuration *
+          (amountOfIntervalBlockReplacements -
+            amountOfWholeIntervalBlockReplacements);
+        replacementBlocks.push({
+          IntervalsT: [],
+          ":@": {
+            ...otherBlockAttributes,
+            attributeRepeat: "1",
+            attributeOnDuration: `${(partialDuration / 2).toFixed(0)}`,
+            attributeOnPower: `${attributePowerParsed}`,
+            attributeOffDuration: `${(partialDuration / 2).toFixed(0)}`,
+            attributeOffPower: `${attributePowerParsed}`,
+          },
+        });
+      }
+
       statistics.steadyStateToIntervals.amount++;
-      statistics.steadyStateToIntervals.durationInSeconds += attributeDuration;
-      return replacementSegments;
+      statistics.steadyStateToIntervals.durationInSeconds +=
+        attributeDurationParsed;
+      return replacementBlocks;
     } else {
       return block;
     }
   }
 
-  transformWarmupBlockToIntervalBlock(block, statistics, options) {
-    const { minimumDuration, recoveryIntervalDuration } = options;
-    const attributePowerHigh = Number.parseFloat(
-      block[":@"].attributePowerHigh
-    );
-    const attributePowerLow = Number.parseFloat(block[":@"].attributePowerLow);
-    const attributeDuration = Number.parseInt(block[":@"].attributeDuration);
-    const warmupPowerDelta = attributePowerHigh - attributePowerLow;
+  transformWarmupOrCooldownBlockToIntervalBlock(block, statistics, options) {
+    const { minimumDuration } = options;
+    // TODO: use a specific intervals duration for warmup/cooldown blocks from the options
+    const intervalsDuration = 30;
+    const blockAttributes = block[":@"];
+    const {
+      attributePowerHigh,
+      attributePowerLow,
+      attributeDuration,
+      ...otherBlockAttributes
+    } = blockAttributes;
+    const attributePowerHighParsed = Number.parseFloat(attributePowerHigh);
+    const attributePowerLowParsed = Number.parseFloat(attributePowerLow);
+    const attributeDurationParsed = Number.parseInt(attributeDuration);
+    const warmupPowerDelta = attributePowerHighParsed - attributePowerLowParsed;
 
-    if (attributeDuration >= minimumDuration) {
-      const amountOfChoppedIntervals = Math.ceil(
-        attributeDuration / recoveryIntervalDuration
+    if (attributeDurationParsed >= minimumDuration) {
+      const amountOfIntervalBlockReplacements =
+        attributeDurationParsed / intervalsDuration;
+      const amountOfWholeIntervalBlockReplacements = Math.floor(
+        amountOfIntervalBlockReplacements
       );
-      const replacementSegments = Array.from(
-        Array(amountOfChoppedIntervals).keys()
+      const replacementBlocks = Array.from(
+        Array(amountOfWholeIntervalBlockReplacements).keys()
       ).map((index) => {
         const power = (
-          attributePowerLow +
-          (index / amountOfChoppedIntervals) * warmupPowerDelta
+          attributePowerLowParsed +
+          (index / amountOfWholeIntervalBlockReplacements) * warmupPowerDelta
         ).toFixed(3);
-        const duration = recoveryIntervalDuration / 2;
+        const duration = intervalsDuration / 2;
         return {
           IntervalsT: [],
           ":@": {
+            ...otherBlockAttributes,
             attributeRepeat: "1",
-            attributeOnDuration: `${duration}`,
+            attributeOnDuration: `${duration.toFixed(0)}`,
             attributeOnPower: `${power}`,
-            attributeOffDuration: `${duration}`,
+            attributeOffDuration: `${duration.toFixed(0)}`,
             attributeOffPower: `${power}`,
           },
         };
       });
+
+      const partialIntervalBlockReplacementIsRequired =
+        amountOfIntervalBlockReplacements >
+        amountOfWholeIntervalBlockReplacements;
+      if (partialIntervalBlockReplacementIsRequired) {
+        const partialDuration =
+          intervalsDuration *
+          (amountOfIntervalBlockReplacements -
+            amountOfWholeIntervalBlockReplacements);
+        replacementBlocks.push({
+          IntervalsT: [],
+          ":@": {
+            ...otherBlockAttributes,
+            attributeRepeat: "1",
+            attributeOnDuration: `${(partialDuration / 2).toFixed(0)}`,
+            attributeOnPower: `${attributePowerHighParsed}`,
+            attributeOffDuration: `${(partialDuration / 2).toFixed(0)}`,
+            attributeOffPower: `${attributePowerHighParsed}`,
+          },
+        });
+      }
+
       statistics.cooldownOrWarmupToIntervals.amount++;
       statistics.cooldownOrWarmupToIntervals.durationInSeconds +=
-        attributeDuration;
-      return replacementSegments;
+        attributeDurationParsed;
+      return replacementBlocks;
     } else {
       return block;
     }
   }
 
-  reportOptimizationStatistics(statistics) {
-    const replacedSteadyStateDurationInMinutes = Math.round(
-      statistics.steadyStateToIntervals.durationInSeconds / 60
+  calculateOptimizationResult(statistics) {
+    const result = {
+      steadyStateToIntervals: {
+        minutes: statistics.steadyStateToIntervals.durationInSeconds / 60,
+      },
+      cooldownOrWarmupToIntervals: {
+        minutes: statistics.cooldownOrWarmupToIntervals.durationInSeconds / 60,
+      },
+    };
+    result.steadyStateToIntervals.xp =
+      result.steadyStateToIntervals.minutes * 2;
+    result.cooldownOrWarmupToIntervals.xp =
+      result.cooldownOrWarmupToIntervals.minutes * 6;
+    result.totalXp = Object.values(result).reduce(
+      (res, cur) => res + cur.xp,
+      0
     );
-    const replacedWarmupOrCooldownDurationInMinutes = Math.round(
-      statistics.cooldownOrWarmupToIntervals.durationInSeconds / 60
-    );
-    const addedXp =
-      replacedSteadyStateDurationInMinutes * 2 +
-      replacedWarmupOrCooldownDurationInMinutes * 6;
+    return result;
+  }
 
+  reportOptimizationResults(optimizationResults) {
     console.info(
-      `Workout optimization added ${addedXp} XP!\n - ${replacedSteadyStateDurationInMinutes}m steady state blocks replaced with intervals: ${
-        replacedSteadyStateDurationInMinutes * 2
-      } extra XP\n - ${replacedWarmupOrCooldownDurationInMinutes}m warmup and cooldown blocks replaced with intervals: ${
-        replacedWarmupOrCooldownDurationInMinutes * 6
-      } extra XP`
+      `Workout optimization added ${optimizationResults.totalXp.toFixed(
+        0
+      )} XP!\n - ${optimizationResults.steadyStateToIntervals.minutes.toFixed(
+        0
+      )}m steady state blocks replaced with intervals: ${optimizationResults.steadyStateToIntervals.xp.toFixed(
+        0
+      )} extra XP\n - ${optimizationResults.cooldownOrWarmupToIntervals.minutes.toFixed(
+        0
+      )}m warmup and cooldown blocks replaced with intervals: ${optimizationResults.cooldownOrWarmupToIntervals.xp.toFixed()} extra XP`
     );
   }
 }

@@ -15,9 +15,8 @@ yargs(hideBin(process.argv)).command(
         describe: "path of a single .zwo workout file",
       })
       .option("minimumDuration", {
-        alias: "m",
         type: "number",
-        default: 60,
+        default: 120,
         description:
           "minimum duration of steady state blocks to consider chopping up",
       })
@@ -28,32 +27,17 @@ yargs(hideBin(process.argv)).command(
         description:
           "whether to write optimized workout files to another file than the original input file",
       })
-      .option("recoveryIntervalDuration", {
-        alias: "r",
-        type: "number",
-        default: 60,
-        description:
-          "duration of created interval blocks for optimizing warmup and cooldown blocks",
-      })
       .option("intervalsDuration", {
-        alias: "i",
         type: "string",
-        default: 30,
-        description:
-          "total duration per generated interval block (50% on 50% off)",
+        default: 120,
+        description: "Desired total intervals block duration (seconds)",
       });
   },
   (argv) => {
-    const {
-      minimumDuration,
-      intervalsDuration,
-      recoveryIntervalDuration,
-      filepath,
-    } = argv;
+    const { minimumDuration, intervalsDuration, filepath } = argv;
     const options = {
       minimumDuration,
       intervalsDuration,
-      recoveryIntervalDuration,
     };
 
     const absoluteFilepath = [cwd(), filepath].join("/");

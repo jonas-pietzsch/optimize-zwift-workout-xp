@@ -5,17 +5,21 @@
   <sportType>bike</sportType>
   <tags/>
   <workout>
-    <Warmup Duration="900" PowerHigh="0.65" PowerLow="0.45">
+    <Warmup Duration="920" PowerHigh="0.65" PowerLow="0.45">
     </Warmup>
-    <SteadyState Duration="180" Power="0.6">
+    <Warmup Duration="20" PowerHigh="1" PowerLow="0.7">
+    </Warmup>
+    <SteadyState Duration="180" Cadence="70" Power="0.6">
     </SteadyState>
-    <SteadyState Duration="180" Power="0.7">
+    <SteadyState Duration="180" Cadence="80" Power="0.7">
     </SteadyState>
-    <SteadyState Duration="180" Power="0.8">
+    <SteadyState Duration="180" Cadence="90" Power="0.8">
     </SteadyState>
-    <SteadyState Duration="180" Power="0.9">
+    <SteadyState Duration="180" Cadence="100" Power="0.9">
     </SteadyState>
-    <SteadyState Duration="300" Power="0.55">
+    <SteadyState Duration="20" Cadence="100" Power="1.2">
+    </SteadyState>
+    <SteadyState Duration="300" Cadence="85" Power="0.55">
     </SteadyState>
     <IntervalsT Repeat="10" OnDuration="30" OnPower="1.33" OffDuration="30" OffPower="0.53">
     </IntervalsT>
