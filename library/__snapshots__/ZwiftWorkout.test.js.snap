@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ZwiftWorkout optimize should optimize the workout 1`] = `
+exports[`ZwiftWorkout optimize should return the optimized workout 1`] = `
 [
   {
     "workout_file": [

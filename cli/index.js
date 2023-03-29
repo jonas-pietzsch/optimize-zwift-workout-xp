@@ -42,7 +42,7 @@ yargs(hideBin(process.argv)).command(
 
     const absoluteFilepath = [cwd(), filepath].join("/");
     const workoutFileBuffer = fs.readFileSync(absoluteFilepath);
-    const workout = ZwiftWorkoutParser.parseZwiftWorkoutFile(workoutFileBuffer);
+    const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileBuffer);
     workout.optimize(options);
 
     const targetFilepath = argv.copy
@@ -50,7 +50,7 @@ yargs(hideBin(process.argv)).command(
       : absoluteFilepath;
     fs.writeFileSync(
       targetFilepath,
-      ZwiftWorkoutParser.assembleZwiftWorkoutFile(workout)
+      ZwiftWorkoutParser.assembleZwoFile(workout)
     );
   }
 ).argv;

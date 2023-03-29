@@ -33,14 +33,13 @@ function getStepContent(step) {
 const optimize = async (settings) => {
   for (const file of settings.selectedFiles) {
     const workoutFileContent = await file.text();
-    const workout =
-      ZwiftWorkoutParser.parseZwiftWorkoutFile(workoutFileContent);
+    const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileContent);
     workout.optimize({
       minimumDuration: settings.steadyStateBlocks.minimumDurationInMinutes * 60,
       intervalsDuration: settings.intervalsBlockDurationInSeconds,
     });
     const optimizedWorkoutFileContent =
-      ZwiftWorkoutParser.assembleZwiftWorkoutFile(workout);
+      ZwiftWorkoutParser.assembleZwoFile(workout);
     download(
       file.name.replace(".zwo", "-optimized.zwo"),
       optimizedWorkoutFileContent

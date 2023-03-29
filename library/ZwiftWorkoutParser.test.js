@@ -3,7 +3,7 @@ import * as fs from "fs";
 
 describe("ZwiftWorkoutParser", () => {
   it("should parse zwo file contents to an object structure that preserves sorting, type and attribute of workout segments", () => {
-    const workout = ZwiftWorkoutParser.parseZwiftWorkoutFile(
+    const workout = ZwiftWorkoutParser.parseZwoFile(
       fs.readFileSync("./sample.zwo")
     );
     expect(workout.contents).toMatchSnapshot();
@@ -14,11 +14,9 @@ describe("ZwiftWorkoutParser", () => {
     const originalFileContentsWithoutWhitespaces = originalFileBuffer
       .toString()
       .replace(/\s/g, "");
-    const workout =
-      ZwiftWorkoutParser.parseZwiftWorkoutFile(originalFileBuffer);
+    const workout = ZwiftWorkoutParser.parseZwoFile(originalFileBuffer);
 
-    const targetFileContents =
-      ZwiftWorkoutParser.assembleZwiftWorkoutFile(workout);
+    const targetFileContents = ZwiftWorkoutParser.assembleZwoFile(workout);
     const targetFileContentsWithoutWhitespaces = targetFileContents.replace(
       /\s/g,
       ""
@@ -28,8 +26,9 @@ describe("ZwiftWorkoutParser", () => {
       targetFileContentsWithoutWhitespaces.replace("<tags></tags>", "<tags/>")
     );
 
-    const workoutFromReGeneratedZwoFile =
-      ZwiftWorkoutParser.parseZwiftWorkoutFile(Buffer.from(targetFileContents));
+    const workoutFromReGeneratedZwoFile = ZwiftWorkoutParser.parseZwoFile(
+      Buffer.from(targetFileContents)
+    );
 
     expect(workout.contents).toEqual(workoutFromReGeneratedZwoFile.contents);
   });

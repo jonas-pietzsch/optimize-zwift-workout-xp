@@ -8,13 +8,13 @@ const options = {
 };
 
 export class ZwiftWorkoutParser {
-  static parseZwiftWorkoutFile(fileBuffer) {
+  static parseZwoFile(fileBuffer) {
     const parser = new XMLParser(options);
     const parsedWorkoutFile = parser.parse(fileBuffer.toString());
     return new ZwiftWorkout(parsedWorkoutFile);
   }
 
-  static assembleZwiftWorkoutFile(zwiftWorkout) {
+  static assembleZwoFile(zwiftWorkout) {
     const builder = new XMLBuilder({
       ...options,
       format: true,
