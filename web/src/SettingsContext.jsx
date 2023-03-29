@@ -1,18 +1,10 @@
 import * as React from "react";
+import { defaultOptions } from "../../library/options.js";
 
 const Context = React.createContext(null);
 const initialState = {
+  ...defaultOptions,
   selectedFiles: [],
-  steadyStateBlocks: {
-    optimize: true,
-    minimumDurationMinutes: 2,
-  },
-  warmupAndCooldownBlocks: {
-    optimizeWarmup: true,
-    optimizeCooldown: true,
-    minimumDurationMinutes: 2,
-  },
-  intervalsBlocksDurationSeconds: 120,
 };
 
 export const SettingsProvider = ({ children }) => {

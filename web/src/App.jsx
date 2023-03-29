@@ -40,15 +40,18 @@ const optimize = async (settings) => {
       steadyStateBlocks: {
         optimize: settings.steadyStateBlocks.optimize,
         minimumDurationSeconds:
-          settings.steadyStateBlocks.minimumDurationMinutes * 60,
+          settings.steadyStateBlocks.minimumDurationSeconds,
+        replacementBlocksDurationSeconds:
+          settings.steadyStateBlocks.replacementBlocksDurationSeconds,
       },
       warmupAndCooldownBlocks: {
         optimizeWarmup: settings.warmupAndCooldownBlocks.optimizeWarmup,
         optimizeCooldown: settings.warmupAndCooldownBlocks.optimizeCooldown,
         minimumDurationSeconds:
-          settings.warmupAndCooldownBlocks.minimumDurationMinutes * 60,
+          settings.warmupAndCooldownBlocks.minimumDurationSeconds,
+        replacementBlocksDurationSeconds:
+          settings.warmupAndCooldownBlocks.replacementBlocksDurationSeconds,
       },
-      intervalsBlocksDurationSeconds: settings.intervalsBlocksDurationSeconds,
     };
     const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
       workout,

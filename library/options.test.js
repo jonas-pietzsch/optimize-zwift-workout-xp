@@ -8,26 +8,33 @@ describe("options", () => {
 
     it("should merge undefined custom options with default options and keep all defaults", () => {
       expect(buildOptions(undefined)).toEqual(defaultOptions);
+      expect(buildOptions()).toEqual(defaultOptions);
+      expect(buildOptions(null)).toEqual(defaultOptions);
     });
 
     it("should merge a few custom options with default options", () => {
       const customOptions = {
-        intervalsBlocksDurationSeconds: 1,
         warmupAndCooldownBlocks: { optimizeWarmup: false },
+        steadyStateBlocks: {
+          optimize: false,
+        },
       };
 
       const result = buildOptions(customOptions);
 
       expect(result).toEqual({
-        intervalsBlocksDurationSeconds: 1,
-        skipReportOutput: false,
         steadyStateBlocks: {
+          optimize: false,
           minimumDurationSeconds: 120,
-          optimize: true,
+          replacementBlocksDurationSeconds: 120,
         },
         warmupAndCooldownBlocks: {
           optimizeWarmup: false,
+          optimizeCooldown: true,
+          minimumDurationSeconds: 120,
+          replacementBlocksDurationSeconds: 30,
         },
+        skipReportOutput: false,
       });
     });
   });
