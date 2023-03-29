@@ -1,29 +1,34 @@
 import cloneDeep from "lodash/cloneDeep.js";
+import { buildOptions } from "./options.js";
 
 export class ZwiftWorkoutOptimizer {
-  static optimize(originalWorkout, options) {
+  static optimize(originalWorkout, customOptions) {
+    const options = buildOptions(customOptions);
     const workout = cloneDeep(originalWorkout);
     const statistics = {
       steadyStateToIntervals: {
         amount: 0,
-        durationInSeconds: 0,
+        durationSeconds: 0,
       },
       cooldownOrWarmupToIntervals: {
         amount: 0,
-        durationInSeconds: 0,
+        durationSeconds: 0,
       },
     };
     [statistics, workout, options].forEach(Object.freeze);
 
     const resultWorkoutBlocks = workout.trainingBlocks
       .map((block) => {
-        if (block.SteadyState) {
+        if (block.SteadyState && options.steadyStateBlocks.optimize) {
           return ZwiftWorkoutOptimizer.transformSteadyStateBlockToIntervalBlock(
             block,
             statistics,
             options
           );
-        } else if (block.Warmup || block.Cooldown) {
+        } else if (
+          (block.Warmup && options.warmupAndCooldownBlocks.optimizeWarmup) ||
+          (block.Cooldown && options.warmupAndCooldownBlocks.optimizeCooldown)
+        ) {
           return ZwiftWorkoutOptimizer.transformWarmupOrCooldownBlockToIntervalBlock(
             block,
             statistics,
@@ -51,16 +56,18 @@ export class ZwiftWorkoutOptimizer {
   }
 
   static transformSteadyStateBlockToIntervalBlock(block, statistics, options) {
-    const { minimumSteadyStateBlockDurationSeconds, intervalsDuration } =
-      options;
+    const {
+      steadyStateBlocks: { minimumDurationSeconds },
+      intervalsBlocksDurationSeconds,
+    } = options;
     const { attributePower, attributeDuration, ...otherBlockAttributes } =
       block[":@"];
     const attributePowerParsed = Number.parseFloat(attributePower);
     const attributeDurationParsed = Number.parseInt(attributeDuration);
 
-    if (attributeDurationParsed >= minimumSteadyStateBlockDurationSeconds) {
+    if (attributeDurationParsed >= minimumDurationSeconds) {
       const amountOfIntervalBlockReplacements =
-        attributeDurationParsed / intervalsDuration;
+        attributeDurationParsed / intervalsBlocksDurationSeconds;
       const amountOfWholeIntervalBlockReplacements = Math.floor(
         amountOfIntervalBlockReplacements
       );
@@ -71,9 +78,9 @@ export class ZwiftWorkoutOptimizer {
         ":@": {
           ...otherBlockAttributes,
           attributeRepeat: "1",
-          attributeOnDuration: `${intervalsDuration / 2}`,
+          attributeOnDuration: `${intervalsBlocksDurationSeconds / 2}`,
           attributeOnPower: `${attributePowerParsed}`,
-          attributeOffDuration: `${intervalsDuration / 2}`,
+          attributeOffDuration: `${intervalsBlocksDurationSeconds / 2}`,
           attributeOffPower: `${attributePowerParsed}`,
         },
       }));
@@ -83,7 +90,7 @@ export class ZwiftWorkoutOptimizer {
         amountOfWholeIntervalBlockReplacements;
       if (partialIntervalBlockReplacementIsRequired) {
         const partialDuration =
-          intervalsDuration *
+          intervalsBlocksDurationSeconds *
           (amountOfIntervalBlockReplacements -
             amountOfWholeIntervalBlockReplacements);
         replacementBlocks.push({
@@ -100,7 +107,7 @@ export class ZwiftWorkoutOptimizer {
       }
 
       statistics.steadyStateToIntervals.amount++;
-      statistics.steadyStateToIntervals.durationInSeconds +=
+      statistics.steadyStateToIntervals.durationSeconds +=
         attributeDurationParsed;
       return replacementBlocks;
     } else {
@@ -113,9 +120,8 @@ export class ZwiftWorkoutOptimizer {
     statistics,
     options
   ) {
-    const { minimumWarmupOrCooldownDurationSeconds } = options;
     // TODO: use a specific intervals duration for warmup/cooldown blocks from the options
-    const intervalsDuration = 30;
+    const intervalsBlocksDurationSeconds = 30;
     const blockAttributes = block[":@"];
     const {
       attributePowerHigh,
@@ -128,9 +134,12 @@ export class ZwiftWorkoutOptimizer {
     const attributeDurationParsed = Number.parseInt(attributeDuration);
     const warmupPowerDelta = attributePowerHighParsed - attributePowerLowParsed;
 
-    if (attributeDurationParsed >= minimumWarmupOrCooldownDurationSeconds) {
+    if (
+      attributeDurationParsed >=
+      options.warmupAndCooldownBlocks.minimumDurationSeconds
+    ) {
       const amountOfIntervalBlockReplacements =
-        attributeDurationParsed / intervalsDuration;
+        attributeDurationParsed / intervalsBlocksDurationSeconds;
       const amountOfWholeIntervalBlockReplacements = Math.floor(
         amountOfIntervalBlockReplacements
       );
@@ -141,7 +150,7 @@ export class ZwiftWorkoutOptimizer {
           attributePowerLowParsed +
           (index / amountOfWholeIntervalBlockReplacements) * warmupPowerDelta
         ).toFixed(3);
-        const duration = intervalsDuration / 2;
+        const duration = intervalsBlocksDurationSeconds / 2;
         return {
           IntervalsT: [],
           ":@": {
@@ -160,7 +169,7 @@ export class ZwiftWorkoutOptimizer {
         amountOfWholeIntervalBlockReplacements;
       if (partialIntervalBlockReplacementIsRequired) {
         const partialDuration =
-          intervalsDuration *
+          intervalsBlocksDurationSeconds *
           (amountOfIntervalBlockReplacements -
             amountOfWholeIntervalBlockReplacements);
         replacementBlocks.push({
@@ -177,7 +186,7 @@ export class ZwiftWorkoutOptimizer {
       }
 
       statistics.cooldownOrWarmupToIntervals.amount++;
-      statistics.cooldownOrWarmupToIntervals.durationInSeconds +=
+      statistics.cooldownOrWarmupToIntervals.durationSeconds +=
         attributeDurationParsed;
       return replacementBlocks;
     } else {
@@ -188,10 +197,10 @@ export class ZwiftWorkoutOptimizer {
   static calculateOptimizationResult(statistics) {
     const result = {
       steadyStateToIntervals: {
-        minutes: statistics.steadyStateToIntervals.durationInSeconds / 60,
+        minutes: statistics.steadyStateToIntervals.durationSeconds / 60,
       },
       cooldownOrWarmupToIntervals: {
-        minutes: statistics.cooldownOrWarmupToIntervals.durationInSeconds / 60,
+        minutes: statistics.cooldownOrWarmupToIntervals.durationSeconds / 60,
       },
     };
     result.steadyStateToIntervals.xp =
@@ -207,15 +216,19 @@ export class ZwiftWorkoutOptimizer {
 
   static reportOptimizationResults(optimizationResults) {
     console.info(
-      `Workout optimization added ${optimizationResults.totalXp.toFixed(
-        0
-      )} XP!\n - ${optimizationResults.steadyStateToIntervals.minutes.toFixed(
-        0
-      )}m steady state blocks replaced with intervals: ${optimizationResults.steadyStateToIntervals.xp.toFixed(
-        0
-      )} extra XP\n - ${optimizationResults.cooldownOrWarmupToIntervals.minutes.toFixed(
-        0
-      )}m warmup and cooldown blocks replaced with intervals: ${optimizationResults.cooldownOrWarmupToIntervals.xp.toFixed()} extra XP`
+      [
+        `Workout optimization added ${optimizationResults.totalXp.toFixed(
+          0
+        )} XP!`,
+        ` - ${optimizationResults.steadyStateToIntervals.minutes.toFixed(
+          0
+        )}m steady state blocks replaced with intervals: ${optimizationResults.steadyStateToIntervals.xp.toFixed(
+          0
+        )} extra XP`,
+        ` - ${optimizationResults.cooldownOrWarmupToIntervals.minutes.toFixed(
+          0
+        )}m warmup and cooldown blocks replaced with intervals: ${optimizationResults.cooldownOrWarmupToIntervals.xp.toFixed()} extra XP`,
+      ].join("\n")
     );
   }
 }

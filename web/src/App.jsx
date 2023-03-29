@@ -35,13 +35,25 @@ const optimize = async (settings) => {
   for (const file of settings.selectedFiles) {
     const workoutFileContent = await file.text();
     const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileContent);
-    const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(workout, {
-      minimumSteadyStateBlockDurationSeconds:
-        settings.steadyStateBlocks.minimumDurationInMinutes * 60,
-      minimumWarmupOrCooldownDurationSeconds:
-        settings.warmupAndCooldownBlocks.minimumDurationInMinutes * 60,
-      intervalsDuration: settings.intervalsBlockDurationInSeconds,
-    });
+
+    const options = {
+      steadyStateBlocks: {
+        optimize: settings.steadyStateBlocks.optimize,
+        minimumDurationSeconds:
+          settings.steadyStateBlocks.minimumDurationMinutes * 60,
+      },
+      warmupAndCooldownBlocks: {
+        optimizeWarmup: settings.warmupAndCooldownBlocks.optimizeWarmup,
+        optimizeCooldown: settings.warmupAndCooldownBlocks.optimizeCooldown,
+        minimumDurationSeconds:
+          settings.warmupAndCooldownBlocks.minimumDurationMinutes * 60,
+      },
+      intervalsBlocksDurationSeconds: settings.intervalsBlocksDurationSeconds,
+    };
+    const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
+      workout,
+      options
+    );
     const optimizedWorkoutFileContent =
       ZwiftWorkoutParser.assembleZwoFile(optimizedWorkout);
     download(

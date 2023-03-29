@@ -15,13 +15,31 @@ yargs(hideBin(process.argv)).command(
       .positional("filepath", {
         describe: "path of a single .zwo workout file",
       })
-      .option("minimumSteadyStateBlockDurationSeconds", {
+      .option("optimizeSteadyStateBlocks", {
+        type: "boolean",
+        default: true,
+        description:
+          "Whether to optimize steady state blocks (replace them with intervals blocks)",
+      })
+      .option("minimumSteadyStateBlockDuration", {
         type: "number",
         default: 120,
         description:
           "Min. duration before steady state blocks are optimized (seconds)",
       })
-      .option("minimumWarmupOrCooldownDurationSeconds", {
+      .option("optimizeWarmupBlocks", {
+        type: "boolean",
+        default: true,
+        description:
+          "Whether to optimize warmup blocks (replace them with intervals blocks)",
+      })
+      .option("optimizeCooldownBlocks", {
+        type: "boolean",
+        default: true,
+        description:
+          "Whether to optimize cooldown blocks (replace them with intervals blocks)",
+      })
+      .option("minimumWarmupOrCooldownDuration", {
         type: "number",
         default: 120,
         description:
@@ -42,8 +60,11 @@ yargs(hideBin(process.argv)).command(
   },
   (argv) => {
     const {
-      minimumSteadyStateBlockDurationSeconds,
-      minimumWarmupOrCooldownDurationSeconds,
+      optimizeSteadyStateBlocks,
+      minimumSteadyStateBlockDuration,
+      optimizeWarmupBlocks,
+      optimizeCooldownBlocks,
+      minimumWarmupOrCooldownDuration,
       intervalsDuration,
       filepath,
     } = argv;
@@ -53,9 +74,16 @@ yargs(hideBin(process.argv)).command(
     const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileBuffer);
 
     const options = {
-      minimumSteadyStateBlockDurationSeconds,
-      minimumWarmupOrCooldownDurationSeconds,
-      intervalsDuration,
+      steadyStateBlocks: {
+        optimize: optimizeSteadyStateBlocks,
+        minimumDurationSeconds: minimumSteadyStateBlockDuration,
+      },
+      warmupAndCooldownBlocks: {
+        optimizeWarmup: optimizeWarmupBlocks,
+        optimizeCooldown: optimizeCooldownBlocks,
+        minimumDurationSeconds: minimumWarmupOrCooldownDuration,
+      },
+      intervalsBlocksDurationSeconds: intervalsDuration,
     };
     const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
       workout,

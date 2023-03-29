@@ -23,13 +23,13 @@ export const OptionsStep = () => {
         control={
           <Checkbox
             inputProps={{ "aria-label": "controlled" }}
-            checked={settings.steadyStateBlocks.active}
+            checked={settings.steadyStateBlocks.optimize}
             onChange={(val) =>
               setSettings({
                 ...settings,
                 steadyStateBlocks: {
                   ...settings.steadyStateBlocks,
-                  active: val.target.checked,
+                  optimize: val.target.checked,
                 },
               })
             }
@@ -37,7 +37,7 @@ export const OptionsStep = () => {
         }
         label="Optimize steady state blocks"
       />
-      {settings.steadyStateBlocks.active ? (
+      {settings.steadyStateBlocks.optimize ? (
         <>
           <Typography sx={{ fontSize: "small" }}>
             Min. duration before steady state blocks are optimized (minutes){" "}
@@ -47,13 +47,13 @@ export const OptionsStep = () => {
           </Typography>
           <Slider
             aria-label="Min. duration before steady state blocks are optimized (minutes)"
-            value={settings.steadyStateBlocks.minimumDurationInMinutes}
+            value={settings.steadyStateBlocks.minimumDurationMinutes}
             onChange={(e) =>
               setSettings({
                 ...settings,
                 steadyStateBlocks: {
                   ...settings.steadyStateBlocks,
-                  minimumDurationInMinutes: e.target.value,
+                  minimumDurationMinutes: e.target.value,
                 },
               })
             }
@@ -71,13 +71,13 @@ export const OptionsStep = () => {
         control={
           <Checkbox
             inputProps={{ "aria-label": "controlled" }}
-            checked={settings.warmupAndCooldownBlocks.warmupActive}
+            checked={settings.warmupAndCooldownBlocks.optimizeWarmup}
             onChange={(val) =>
               setSettings({
                 ...settings,
                 warmupAndCooldownBlocks: {
                   ...settings.warmupAndCooldownBlocks,
-                  warmupActive: val.target.checked,
+                  optimizeWarmup: val.target.checked,
                 },
               })
             }
@@ -89,13 +89,13 @@ export const OptionsStep = () => {
         control={
           <Checkbox
             inputProps={{ "aria-label": "controlled" }}
-            checked={settings.warmupAndCooldownBlocks.cooldownActive}
+            checked={settings.warmupAndCooldownBlocks.optimizeCooldown}
             onChange={(val) =>
               setSettings({
                 ...settings,
                 warmupAndCooldownBlocks: {
                   ...settings.warmupAndCooldownBlocks,
-                  cooldownActive: val.target.checked,
+                  optimizeCooldown: val.target.checked,
                 },
               })
             }
@@ -113,13 +113,13 @@ export const OptionsStep = () => {
           </Typography>
           <Slider
             aria-label="Min. duration before warmup or cooldown blocks are optimized (minutes)"
-            value={settings.warmupAndCooldownBlocks.minimumDurationInMinutes}
+            value={settings.warmupAndCooldownBlocks.minimumDurationMinutes}
             onChange={(e) =>
               setSettings({
                 ...settings,
                 warmupAndCooldownBlocks: {
                   ...settings.warmupAndCooldownBlocks,
-                  minimumDurationInMinutes: e.target.value,
+                  minimumDurationMinutes: e.target.value,
                 },
               })
             }
@@ -143,11 +143,11 @@ export const OptionsStep = () => {
           </Typography>
           <Slider
             aria-label="Desired total intervals block duration (seconds)"
-            value={settings.intervalsBlockDurationInSeconds}
+            value={settings.intervalsBlocksDurationSeconds}
             onChange={(e) =>
               setSettings({
                 ...settings,
-                intervalsBlockDurationInSeconds: e.target.value,
+                intervalsBlocksDurationSeconds: e.target.value,
               })
             }
             max={1200}

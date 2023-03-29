@@ -4,15 +4,15 @@ const Context = React.createContext(null);
 const initialState = {
   selectedFiles: [],
   steadyStateBlocks: {
-    active: true,
-    minimumDurationInMinutes: 2,
+    optimize: true,
+    minimumDurationMinutes: 2,
   },
   warmupAndCooldownBlocks: {
-    warmupActive: true,
-    cooldownActive: true,
-    minimumDurationInMinutes: 2,
+    optimizeWarmup: true,
+    optimizeCooldown: true,
+    minimumDurationMinutes: 2,
   },
-  intervalsBlockDurationInSeconds: 180,
+  intervalsBlocksDurationSeconds: 120,
 };
 
 export const SettingsProvider = ({ children }) => {
@@ -20,12 +20,12 @@ export const SettingsProvider = ({ children }) => {
 
   const computed = {
     shouldOptimizeAnyWarmupOrCooldown:
-      state.warmupAndCooldownBlocks.cooldownActive ||
-      state.warmupAndCooldownBlocks.warmupActive,
+      state.warmupAndCooldownBlocks.optimizeCooldown ||
+      state.warmupAndCooldownBlocks.optimizeWarmup,
     shouldOptimizeAnything:
-      state.warmupAndCooldownBlocks.cooldownActive ||
-      state.warmupAndCooldownBlocks.warmupActive ||
-      state.steadyStateBlocks.active,
+      state.warmupAndCooldownBlocks.optimizeCooldown ||
+      state.warmupAndCooldownBlocks.optimizeWarmup ||
+      state.steadyStateBlocks.optimize,
   };
 
   return (
