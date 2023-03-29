@@ -1,70 +1,32 @@
 import { ZwiftWorkoutParser } from "./ZwiftWorkoutParser.js";
-import * as fs from "fs";
-import cloneDeep from "lodash/cloneDeep";
+import fs from "fs";
 
 describe("ZwiftWorkout", () => {
-  describe("optimize", () => {
-    it("should return the optimized workout", () => {
-      const sampleWorkout = ZwiftWorkoutParser.parseZwoFile(
-        fs.readFileSync("./sample.zwo")
-      );
-      const { optimizedWorkout } = sampleWorkout.optimize({
-        minimumDuration: 120,
-        intervalsDuration: 120,
-        skipReportOutput: true,
-      });
+  let workout;
 
-      expect(optimizedWorkout.contents).toMatchSnapshot();
+  beforeEach(() => {
+    workout = ZwiftWorkoutParser.parseZwoFile(fs.readFileSync("./sample.zwo"));
+  });
+
+  describe("name", () => {
+    test("getter should retrieve the workout name", () => {
+      expect(workout.name).toEqual("Something");
     });
 
-    it("should not modify the original contents of the workout", () => {
-      const sampleWorkout = ZwiftWorkoutParser.parseZwoFile(
-        fs.readFileSync("./sample.zwo")
-      );
-      const originalSampleWorkout = cloneDeep(sampleWorkout);
+    test("setter should write the workout name", () => {
+      workout.name = "Some modified value";
+      expect(workout.name).toEqual("Some modified value");
+    });
+  });
 
-      const { optimizedWorkout } = sampleWorkout.optimize({
-        minimumDuration: 120,
-        intervalsDuration: 120,
-        skipReportOutput: true,
-      });
-
-      expect(sampleWorkout.contents).toEqual(originalSampleWorkout.contents);
-      expect(optimizedWorkout.contents).not.toEqual(sampleWorkout.contents);
+  describe("trainingBlocks", () => {
+    test("getter should retrieve the training blocks", () => {
+      expect(workout.trainingBlocks).toMatchSnapshot();
     });
 
-    it("should return statistics and optimization results", () => {
-      const sampleWorkout = ZwiftWorkoutParser.parseZwoFile(
-        fs.readFileSync("./sample.zwo")
-      );
-
-      const { statistics, optimizationResults } = sampleWorkout.optimize({
-        minimumDuration: 120,
-        intervalsDuration: 120,
-        skipReportOutput: true,
-      });
-
-      expect(statistics).toEqual({
-        cooldownOrWarmupToIntervals: {
-          amount: 2,
-          durationInSeconds: 2000,
-        },
-        steadyStateToIntervals: {
-          amount: 7,
-          durationInSeconds: 1620,
-        },
-      });
-      expect(optimizationResults).toEqual({
-        cooldownOrWarmupToIntervals: {
-          minutes: 33.333333333333336,
-          xp: 200,
-        },
-        steadyStateToIntervals: {
-          minutes: 27,
-          xp: 54,
-        },
-        totalXp: 254,
-      });
+    test("setter should write the workout name", () => {
+      workout.trainingBlocks = [];
+      expect(workout.trainingBlocks).toEqual([]);
     });
   });
 });

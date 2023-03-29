@@ -3,7 +3,6 @@ import cloneDeep from "lodash/cloneDeep.js";
 export class ZwiftWorkoutOptimizer {
   static optimize(originalWorkout, options) {
     const workout = cloneDeep(originalWorkout);
-
     const statistics = {
       steadyStateToIntervals: {
         amount: 0,
@@ -14,10 +13,9 @@ export class ZwiftWorkoutOptimizer {
         durationInSeconds: 0,
       },
     };
-    const currentWorkoutBlocks = workout.contents[0].workout_file.find(
-      (entry) => entry.workout
-    ).workout;
-    const resultWorkoutBlocks = currentWorkoutBlocks
+    [statistics, workout, options].forEach(Object.freeze);
+
+    const resultWorkoutBlocks = workout.trainingBlocks
       .map((block) => {
         if (block.SteadyState) {
           return ZwiftWorkoutOptimizer.transformSteadyStateBlockToIntervalBlock(
@@ -43,11 +41,8 @@ export class ZwiftWorkoutOptimizer {
       })
       .flatMap((item) => item);
 
-    workout.contents[0].workout_file.find((entry) => entry.workout).workout =
-      resultWorkoutBlocks;
-    workout.contents[0].workout_file.find((entry) => entry.name).name[0][
-      "#text"
-    ] += " (optimized)";
+    workout.trainingBlocks = resultWorkoutBlocks;
+    workout.name = workout.name += " (optimized)";
 
     const optimizationResults =
       ZwiftWorkoutOptimizer.calculateOptimizationResult(statistics);

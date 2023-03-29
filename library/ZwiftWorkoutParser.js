@@ -8,17 +8,17 @@ const options = {
 };
 
 export class ZwiftWorkoutParser {
+  static xmlParser = new XMLParser(options);
+  static xmlBuilder = new XMLBuilder({ ...options, format: true });
+
   static parseZwoFile(fileBuffer) {
-    const parser = new XMLParser(options);
-    const parsedWorkoutFile = parser.parse(fileBuffer.toString());
+    const parsedWorkoutFile = ZwiftWorkoutParser.xmlParser.parse(
+      fileBuffer.toString()
+    );
     return new ZwiftWorkout(parsedWorkoutFile);
   }
 
   static assembleZwoFile(zwiftWorkout) {
-    const builder = new XMLBuilder({
-      ...options,
-      format: true,
-    });
-    return builder.build(zwiftWorkout.contents);
+    return ZwiftWorkoutParser.xmlBuilder.build(zwiftWorkout.contents);
   }
 }

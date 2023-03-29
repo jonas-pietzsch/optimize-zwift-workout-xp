@@ -1,942 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ZwiftWorkout optimize should return the optimized workout 1`] = `
+exports[`ZwiftWorkout trainingBlocks getter should retrieve the training blocks 1`] = `
 [
   {
-    "workout_file": [
-      {
-        "author": [
-          {
-            "#text": "Somebody",
-          },
-        ],
-      },
-      {
-        "name": [
-          {
-            "#text": "Something (optimized)",
-          },
-        ],
-      },
-      {
-        "description": [
-          {
-            "#text": "Some description",
-          },
-        ],
-      },
-      {
-        "sportType": [
-          {
-            "#text": "bike",
-          },
-        ],
-      },
-      {
-        "tags": [],
-      },
-      {
-        "workout": [
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.450",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.450",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.457",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.457",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.463",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.463",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.470",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.470",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.477",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.477",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.483",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.483",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.490",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.490",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.497",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.497",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.503",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.503",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.510",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.510",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.517",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.517",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.523",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.523",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.530",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.530",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.537",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.537",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.543",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.543",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.550",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.550",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.557",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.557",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.563",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.563",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.570",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.570",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.577",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.577",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.583",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.583",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.590",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.590",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.597",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.597",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.603",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.603",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.610",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.610",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.617",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.617",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.623",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.623",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.630",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.630",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.637",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.637",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.643",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.643",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "10",
-              "attributeOffPower": "0.65",
-              "attributeOnDuration": "10",
-              "attributeOnPower": "0.65",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeDuration": "20",
-              "attributePowerHigh": "1",
-              "attributePowerLow": "0.7",
-            },
-            "Warmup": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "70",
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.6",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.6",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "70",
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.6",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "0.6",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "80",
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.7",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.7",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "80",
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.7",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "0.7",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "90",
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.8",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.8",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "90",
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.8",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "0.8",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "100",
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.9",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.9",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "100",
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.9",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "0.9",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "100",
-              "attributeDuration": "20",
-              "attributePower": "1.2",
-            },
-            "SteadyState": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "85",
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "85",
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeCadence": "85",
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.53",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "1.33",
-              "attributeRepeat": "10",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.53",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "1.33",
-              "attributeRepeat": "10",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "60",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "60",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.55",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "0.55",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "30",
-              "attributeOffPower": "0.53",
-              "attributeOnDuration": "30",
-              "attributeOnPower": "1.33",
-              "attributeRepeat": "10",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.630",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.630",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.624",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.624",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.619",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.619",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.613",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.613",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.608",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.608",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.602",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.602",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.597",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.597",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.591",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.591",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.586",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.586",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.580",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.580",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.574",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.574",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.569",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.569",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.563",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.563",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.558",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.558",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.552",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.552",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.547",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.547",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.541",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.541",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.536",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.536",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.530",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.530",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.524",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.524",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.519",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.519",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.513",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.513",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.508",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.508",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.502",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.502",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.497",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.497",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.491",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.491",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.486",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.486",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.480",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.480",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.474",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.474",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.469",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.469",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.463",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.463",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.458",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.458",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.452",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.452",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.447",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.447",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.441",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.441",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-          {
-            ":@": {
-              "attributeOffDuration": "15",
-              "attributeOffPower": "0.436",
-              "attributeOnDuration": "15",
-              "attributeOnPower": "0.436",
-              "attributeRepeat": "1",
-            },
-            "IntervalsT": [],
-          },
-        ],
-      },
-    ],
+    ":@": {
+      "attributeDuration": "920",
+      "attributePowerHigh": "0.65",
+      "attributePowerLow": "0.45",
+    },
+    "Warmup": [],
+  },
+  {
+    ":@": {
+      "attributeDuration": "20",
+      "attributePowerHigh": "1",
+      "attributePowerLow": "0.7",
+    },
+    "Warmup": [],
+  },
+  {
+    ":@": {
+      "attributeCadence": "70",
+      "attributeDuration": "180",
+      "attributePower": "0.6",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeCadence": "80",
+      "attributeDuration": "180",
+      "attributePower": "0.7",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeCadence": "90",
+      "attributeDuration": "180",
+      "attributePower": "0.8",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeCadence": "100",
+      "attributeDuration": "180",
+      "attributePower": "0.9",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeCadence": "100",
+      "attributeDuration": "20",
+      "attributePower": "1.2",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeCadence": "85",
+      "attributeDuration": "300",
+      "attributePower": "0.55",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeOffDuration": "30",
+      "attributeOffPower": "0.53",
+      "attributeOnDuration": "30",
+      "attributeOnPower": "1.33",
+      "attributeRepeat": "10",
+    },
+    "IntervalsT": [],
+  },
+  {
+    ":@": {
+      "attributeDuration": "300",
+      "attributePower": "0.55",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeOffDuration": "30",
+      "attributeOffPower": "0.53",
+      "attributeOnDuration": "30",
+      "attributeOnPower": "1.33",
+      "attributeRepeat": "10",
+    },
+    "IntervalsT": [],
+  },
+  {
+    ":@": {
+      "attributeDuration": "300",
+      "attributePower": "0.55",
+    },
+    "SteadyState": [],
+  },
+  {
+    ":@": {
+      "attributeOffDuration": "30",
+      "attributeOffPower": "0.53",
+      "attributeOnDuration": "30",
+      "attributeOnPower": "1.33",
+      "attributeRepeat": "10",
+    },
+    "IntervalsT": [],
+  },
+  {
+    ":@": {
+      "attributeDuration": "1080",
+      "attributePowerHigh": "0.43",
+      "attributePowerLow": "0.63",
+    },
+    "Cooldown": [],
   },
 ]
 `;

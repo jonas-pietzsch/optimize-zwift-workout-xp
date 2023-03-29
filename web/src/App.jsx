@@ -14,6 +14,7 @@ import { useSettingsContext } from "./SettingsContext.jsx";
 import { OptionsStep } from "./steps/OptionsStep.jsx";
 import { WorkoutFileUploadStep } from "./steps/WorkoutFileUploadStep.jsx";
 import { SummaryStep } from "./steps/SummaryStep.jsx";
+import { ZwiftWorkoutOptimizer } from "../../library/ZwiftWorkoutOptimizer.js";
 
 const steps = ["Select .zwo file(s)", "Options", "Summary"];
 
@@ -34,12 +35,12 @@ const optimize = async (settings) => {
   for (const file of settings.selectedFiles) {
     const workoutFileContent = await file.text();
     const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileContent);
-    workout.optimize({
+    const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(workout, {
       minimumDuration: settings.steadyStateBlocks.minimumDurationInMinutes * 60,
       intervalsDuration: settings.intervalsBlockDurationInSeconds,
     });
     const optimizedWorkoutFileContent =
-      ZwiftWorkoutParser.assembleZwoFile(workout);
+      ZwiftWorkoutParser.assembleZwoFile(optimizedWorkout);
     download(
       file.name.replace(".zwo", "-optimized.zwo"),
       optimizedWorkoutFileContent

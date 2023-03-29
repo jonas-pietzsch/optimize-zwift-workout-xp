@@ -5,6 +5,7 @@ import { hideBin } from "yargs/helpers";
 import { cwd } from "node:process";
 import * as fs from "fs";
 import { ZwiftWorkoutParser } from "../library/ZwiftWorkoutParser.js";
+import { ZwiftWorkoutOptimizer } from "../library/ZwiftWorkoutOptimizer.js";
 
 yargs(hideBin(process.argv)).command(
   "$0 [filepath]",
@@ -35,22 +36,26 @@ yargs(hideBin(process.argv)).command(
   },
   (argv) => {
     const { minimumDuration, intervalsDuration, filepath } = argv;
-    const options = {
-      minimumDuration,
-      intervalsDuration,
-    };
 
     const absoluteFilepath = [cwd(), filepath].join("/");
     const workoutFileBuffer = fs.readFileSync(absoluteFilepath);
     const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileBuffer);
-    workout.optimize(options);
+
+    const options = {
+      minimumDuration,
+      intervalsDuration,
+    };
+    const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
+      workout,
+      options
+    );
 
     const targetFilepath = argv.copy
       ? absoluteFilepath.replace(".zwo", "-optimized.zwo")
       : absoluteFilepath;
     fs.writeFileSync(
       targetFilepath,
-      ZwiftWorkoutParser.assembleZwoFile(workout)
+      ZwiftWorkoutParser.assembleZwoFile(optimizedWorkout)
     );
   }
 ).argv;
