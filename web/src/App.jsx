@@ -36,7 +36,10 @@ const optimize = async (settings) => {
     const workoutFileContent = await file.text();
     const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileContent);
     const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(workout, {
-      minimumDuration: settings.steadyStateBlocks.minimumDurationInMinutes * 60,
+      minimumSteadyStateBlockDurationSeconds:
+        settings.steadyStateBlocks.minimumDurationInMinutes * 60,
+      minimumWarmupOrCooldownDurationSeconds:
+        settings.warmupAndCooldownBlocks.minimumDurationInMinutes * 60,
       intervalsDuration: settings.intervalsBlockDurationInSeconds,
     });
     const optimizedWorkoutFileContent =

@@ -1,2 +1,4 @@
 coverage/
 .idea/
+docs/
+web/dist/

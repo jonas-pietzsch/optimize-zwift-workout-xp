@@ -23,13 +23,7 @@ export class ZwiftWorkoutOptimizer {
             statistics,
             options
           );
-        } else if (block.Warmup) {
-          return ZwiftWorkoutOptimizer.transformWarmupOrCooldownBlockToIntervalBlock(
-            block,
-            statistics,
-            options
-          );
-        } else if (block.Cooldown) {
+        } else if (block.Warmup || block.Cooldown) {
           return ZwiftWorkoutOptimizer.transformWarmupOrCooldownBlockToIntervalBlock(
             block,
             statistics,
@@ -57,13 +51,14 @@ export class ZwiftWorkoutOptimizer {
   }
 
   static transformSteadyStateBlockToIntervalBlock(block, statistics, options) {
-    const { minimumDuration, intervalsDuration } = options;
+    const { minimumSteadyStateBlockDurationSeconds, intervalsDuration } =
+      options;
     const { attributePower, attributeDuration, ...otherBlockAttributes } =
       block[":@"];
     const attributePowerParsed = Number.parseFloat(attributePower);
     const attributeDurationParsed = Number.parseInt(attributeDuration);
 
-    if (attributeDurationParsed >= minimumDuration) {
+    if (attributeDurationParsed >= minimumSteadyStateBlockDurationSeconds) {
       const amountOfIntervalBlockReplacements =
         attributeDurationParsed / intervalsDuration;
       const amountOfWholeIntervalBlockReplacements = Math.floor(
@@ -118,7 +113,7 @@ export class ZwiftWorkoutOptimizer {
     statistics,
     options
   ) {
-    const { minimumDuration } = options;
+    const { minimumWarmupOrCooldownDurationSeconds } = options;
     // TODO: use a specific intervals duration for warmup/cooldown blocks from the options
     const intervalsDuration = 30;
     const blockAttributes = block[":@"];
@@ -133,7 +128,7 @@ export class ZwiftWorkoutOptimizer {
     const attributeDurationParsed = Number.parseInt(attributeDuration);
     const warmupPowerDelta = attributePowerHighParsed - attributePowerLowParsed;
 
-    if (attributeDurationParsed >= minimumDuration) {
+    if (attributeDurationParsed >= minimumWarmupOrCooldownDurationSeconds) {
       const amountOfIntervalBlockReplacements =
         attributeDurationParsed / intervalsDuration;
       const amountOfWholeIntervalBlockReplacements = Math.floor(

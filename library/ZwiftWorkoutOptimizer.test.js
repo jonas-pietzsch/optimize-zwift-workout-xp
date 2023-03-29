@@ -12,7 +12,8 @@ describe("ZwiftWorkoutOptimizer", () => {
       const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
         sampleWorkout,
         {
-          minimumDuration: 120,
+          minimumSteadyStateBlockDurationSeconds: 120,
+          minimumWarmupOrCooldownDurationSeconds: 120,
           intervalsDuration: 120,
           skipReportOutput: true,
         }
@@ -30,7 +31,8 @@ describe("ZwiftWorkoutOptimizer", () => {
       const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
         sampleWorkout,
         {
-          minimumDuration: 120,
+          minimumSteadyStateBlockDurationSeconds: 120,
+          minimumWarmupOrCooldownDurationSeconds: 120,
           intervalsDuration: 120,
           skipReportOutput: true,
         }
@@ -47,7 +49,8 @@ describe("ZwiftWorkoutOptimizer", () => {
 
       const { statistics, optimizationResults } =
         ZwiftWorkoutOptimizer.optimize(sampleWorkout, {
-          minimumDuration: 120,
+          minimumSteadyStateBlockDurationSeconds: 120,
+          minimumWarmupOrCooldownDurationSeconds: 120,
           intervalsDuration: 120,
           skipReportOutput: true,
         });

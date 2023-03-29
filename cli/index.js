@@ -15,11 +15,17 @@ yargs(hideBin(process.argv)).command(
       .positional("filepath", {
         describe: "path of a single .zwo workout file",
       })
-      .option("minimumDuration", {
+      .option("minimumSteadyStateBlockDurationSeconds", {
         type: "number",
         default: 120,
         description:
-          "minimum duration of steady state blocks to consider chopping up",
+          "Min. duration before steady state blocks are optimized (seconds)",
+      })
+      .option("minimumWarmupOrCooldownDurationSeconds", {
+        type: "number",
+        default: 120,
+        description:
+          "Min. duration before warmup/cooldown blocks are optimized (seconds)",
       })
       .option("copy", {
         alias: "c",
@@ -35,14 +41,20 @@ yargs(hideBin(process.argv)).command(
       });
   },
   (argv) => {
-    const { minimumDuration, intervalsDuration, filepath } = argv;
+    const {
+      minimumSteadyStateBlockDurationSeconds,
+      minimumWarmupOrCooldownDurationSeconds,
+      intervalsDuration,
+      filepath,
+    } = argv;
 
     const absoluteFilepath = [cwd(), filepath].join("/");
     const workoutFileBuffer = fs.readFileSync(absoluteFilepath);
     const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileBuffer);
 
     const options = {
-      minimumDuration,
+      minimumSteadyStateBlockDurationSeconds,
+      minimumWarmupOrCooldownDurationSeconds,
       intervalsDuration,
     };
     const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
