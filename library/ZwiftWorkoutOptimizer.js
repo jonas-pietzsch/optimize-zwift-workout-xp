@@ -147,11 +147,17 @@ export class ZwiftWorkoutOptimizer {
       );
       const replacementBlocks = Array.from(
         Array(amountOfWholeIntervalBlockReplacements).keys()
-      ).map((index) => {
-        const power = (
+      ).map((blockIndex) => {
+        const onSegmentIndex = blockIndex * 2;
+        const offSegmentIndex = blockIndex * 2 + 1;
+        const onPower =
           attributePowerLowParsed +
-          (index / amountOfWholeIntervalBlockReplacements) * warmupPowerDelta
-        ).toFixed(3);
+          (onSegmentIndex / (amountOfWholeIntervalBlockReplacements * 2)) *
+            warmupPowerDelta;
+        const offPower =
+          attributePowerLowParsed +
+          (offSegmentIndex / (amountOfWholeIntervalBlockReplacements * 2)) *
+            warmupPowerDelta;
         const duration = replacementBlocksDurationSeconds / 2;
         return {
           IntervalsT: [],
@@ -159,9 +165,9 @@ export class ZwiftWorkoutOptimizer {
             ...otherBlockAttributes,
             attributeRepeat: "1",
             attributeOnDuration: `${duration.toFixed(0)}`,
-            attributeOnPower: `${power}`,
+            attributeOnPower: `${onPower.toFixed(3)}`,
             attributeOffDuration: `${duration.toFixed(0)}`,
-            attributeOffPower: `${power}`,
+            attributeOffPower: `${offPower.toFixed(3)}`,
           },
         };
       });
