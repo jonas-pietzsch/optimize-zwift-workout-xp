@@ -11,26 +11,26 @@ import { SettingsProvider } from "./SettingsContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <SettingsProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppBar
-          position="absolute"
-          color="default"
-          elevation={0}
-          sx={{
-            position: "relative",
-            borderBottom: (t) => `1px solid ${t.palette.divider}`,
-          }}
-        >
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Optimize Zwift workouts for maximum XP
-            </Typography>
-          </Toolbar>
-        </AppBar>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar
+        position="absolute"
+        color="default"
+        elevation={0}
+        sx={{
+          position: "relative",
+          borderBottom: (t) => `1px solid ${t.palette.divider}`,
+        }}
+      >
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Optimize Zwift workouts for maximum XP
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <SettingsProvider>
         <App />
-      </ThemeProvider>
-    </SettingsProvider>
+      </SettingsProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

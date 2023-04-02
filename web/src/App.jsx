@@ -15,6 +15,7 @@ import { OptionsStep } from "./steps/OptionsStep.jsx";
 import { WorkoutFileUploadStep } from "./steps/WorkoutFileUploadStep.jsx";
 import { SummaryStep } from "./steps/SummaryStep.jsx";
 import { ZwiftWorkoutOptimizer } from "../../library/ZwiftWorkoutOptimizer.js";
+import { ResultStep } from "./steps/ResultStep.jsx";
 
 const steps = ["Select .zwo file(s)", "Options", "Summary"];
 
@@ -31,7 +32,9 @@ function getStepContent(step) {
   }
 }
 
-const optimize = async (settings) => {
+const optimize = async (settings, handleResults) => {
+  const results = [];
+
   for (const file of settings.selectedFiles) {
     const workoutFileContent = await file.text();
     const workout = ZwiftWorkoutParser.parseZwoFile(workoutFileContent);
@@ -53,10 +56,9 @@ const optimize = async (settings) => {
           settings.warmupAndCooldownBlocks.replacementBlocksDurationSeconds,
       },
     };
-    const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
-      workout,
-      options
-    );
+    const { optimizedWorkout, optimizationResults, statistics } =
+      ZwiftWorkoutOptimizer.optimize(workout, options);
+    results.push({ statistics, optimizationResults, name: file.name });
     const optimizedWorkoutFileContent =
       ZwiftWorkoutParser.assembleZwoFile(optimizedWorkout);
     download(
@@ -64,16 +66,18 @@ const optimize = async (settings) => {
       optimizedWorkoutFileContent
     );
   }
+
+  handleResults(results);
 };
 
 export const App = () => {
-  const { settings, computed, reset } = useSettingsContext();
+  const { settings, computed, reset, saveResults } = useSettingsContext();
   const { shouldOptimizeAnything } = computed;
 
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = async () => {
     if (activeStep === 2) {
-      await optimize(settings);
+      await optimize(settings, saveResults);
     }
     setActiveStep(activeStep + 1);
   };
@@ -109,23 +113,7 @@ export const App = () => {
           ))}
         </Stepper>
         {activeStep === steps.length ? (
-          <>
-            <Typography typography={{ fontWeight: "bold" }}>
-              Finished!
-            </Typography>
-
-            <Typography sx={{ mb: 3 }}>
-              The optimized file(s) were put out as a download. You just have to
-              move them into your Zwift custom workouts folder now and start
-              training again.
-              <br />
-              Have fun and happy leveling!
-            </Typography>
-
-            <Button variant="contained" onClick={startAgain}>
-              Start again
-            </Button>
-          </>
+          <ResultStep onButtonPress={startAgain} />
         ) : (
           <>
             {getStepContent(activeStep)}

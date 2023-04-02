@@ -5,6 +5,7 @@ const Context = React.createContext(null);
 const initialState = {
   ...defaultOptions,
   selectedFiles: [],
+  results: [],
 };
 
 export const SettingsProvider = ({ children }) => {
@@ -27,6 +28,7 @@ export const SettingsProvider = ({ children }) => {
         setSettings: setState,
         computed,
         reset: () => setState(initialState),
+        saveResults: (results) => setState({ ...state, results }),
       }}
     >
       {children}
