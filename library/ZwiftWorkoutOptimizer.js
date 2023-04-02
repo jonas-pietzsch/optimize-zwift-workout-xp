@@ -10,7 +10,11 @@ export class ZwiftWorkoutOptimizer {
         amount: 0,
         durationSeconds: 0,
       },
-      cooldownOrWarmupToIntervals: {
+      warmupToIntervals: {
+        amount: 0,
+        durationSeconds: 0,
+      },
+      cooldownToIntervals: {
         amount: 0,
         durationSeconds: 0,
       },
@@ -193,9 +197,14 @@ export class ZwiftWorkoutOptimizer {
         });
       }
 
-      statistics.cooldownOrWarmupToIntervals.amount++;
-      statistics.cooldownOrWarmupToIntervals.durationSeconds +=
-        attributeDurationParsed;
+      if (block.Warmup) {
+        statistics.warmupToIntervals.amount++;
+        statistics.warmupToIntervals.durationSeconds += attributeDurationParsed;
+      } else {
+        statistics.cooldownToIntervals.amount++;
+        statistics.cooldownToIntervals.durationSeconds +=
+          attributeDurationParsed;
+      }
       return replacementBlocks;
     } else {
       return block;
@@ -207,16 +216,23 @@ export class ZwiftWorkoutOptimizer {
       steadyStateToIntervals: {
         minutes: statistics.steadyStateToIntervals.durationSeconds / 60,
       },
-      cooldownOrWarmupToIntervals: {
-        minutes: statistics.cooldownOrWarmupToIntervals.durationSeconds / 60,
+      cooldownToIntervals: {
+        minutes: statistics.cooldownToIntervals.durationSeconds / 60,
+      },
+      warmupToIntervals: {
+        minutes: statistics.warmupToIntervals.durationSeconds / 60,
       },
     };
     result.steadyStateToIntervals.xp =
       result.steadyStateToIntervals.minutes * 2;
-    result.cooldownOrWarmupToIntervals.xp =
-      result.cooldownOrWarmupToIntervals.minutes * 6;
+    result.cooldownToIntervals.xp = result.cooldownToIntervals.minutes * 6;
+    result.warmupToIntervals.xp = result.warmupToIntervals.minutes * 6;
     result.totalXp = Object.values(result).reduce(
       (res, cur) => res + cur.xp,
+      0
+    );
+    result.totalMinutes = Object.values(result).reduce(
+      (res, cur) => res + (typeof cur === "object" ? cur.minutes : 0),
       0
     );
     return result;
@@ -233,9 +249,12 @@ export class ZwiftWorkoutOptimizer {
         )}m steady state blocks replaced with intervals: ${optimizationResults.steadyStateToIntervals.xp.toFixed(
           0
         )} extra XP`,
-        ` - ${optimizationResults.cooldownOrWarmupToIntervals.minutes.toFixed(
+        ` - ${optimizationResults.cooldownToIntervals.minutes.toFixed(
           0
-        )}m warmup and cooldown blocks replaced with intervals: ${optimizationResults.cooldownOrWarmupToIntervals.xp.toFixed()} extra XP`,
+        )}m cooldown blocks replaced with intervals: ${optimizationResults.cooldownToIntervals.xp.toFixed()} extra XP`,
+        ` - ${optimizationResults.warmupToIntervals.minutes.toFixed(
+          0
+        )}m warmup blocks replaced with intervals: ${optimizationResults.warmupToIntervals.xp.toFixed()} extra XP`,
       ].join("\n")
     );
   }

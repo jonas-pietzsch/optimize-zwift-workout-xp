@@ -58,13 +58,28 @@ const OptimizationResultsTables = ({ results }) => {
         <TableBody>
           <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
             <TableCell component="th" scope="row">
-              Warmup & Cooldown
+              Warmup
             </TableCell>
             <TableCell align="right">
-              {optimizationResults.cooldownOrWarmupToIntervals.minutes} min
+              {optimizationResults.warmupToIntervals.minutes} min
             </TableCell>
             <TableCell align="right">
-              {optimizationResults.cooldownOrWarmupToIntervals.xp} XP
+              {optimizationResults.warmupToIntervals.xp} XP
+            </TableCell>
+            {/*<TableCell align="right">*/}
+            {/*  {optimizationResults.cooldownOrWarmupToIntervals.xp} XP*/}
+            {/*</TableCell>*/}
+          </TableRow>
+
+          <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+            <TableCell component="th" scope="row">
+              Cooldown
+            </TableCell>
+            <TableCell align="right">
+              {optimizationResults.cooldownToIntervals.minutes} min
+            </TableCell>
+            <TableCell align="right">
+              {optimizationResults.cooldownToIntervals.xp} XP
             </TableCell>
             {/*<TableCell align="right">*/}
             {/*  {optimizationResults.cooldownOrWarmupToIntervals.xp} XP*/}
@@ -89,18 +104,10 @@ const OptimizationResultsTables = ({ results }) => {
               <strong>Total</strong>
             </TableCell>
             <TableCell align="right">
-              <strong>
-                {optimizationResults.steadyStateToIntervals.minutes +
-                  optimizationResults.cooldownOrWarmupToIntervals.minutes}{" "}
-                min
-              </strong>
+              <strong>{optimizationResults.totalMinutes} min</strong>
             </TableCell>
             <TableCell align="right">
-              <strong>
-                {optimizationResults.steadyStateToIntervals.xp +
-                  optimizationResults.cooldownOrWarmupToIntervals.xp}{" "}
-                XP
-              </strong>
+              <strong>{optimizationResults.totalXp} XP</strong>
             </TableCell>
             {/*<TableCell align="right">%</TableCell>*/}
           </TableRow>

@@ -39,9 +39,13 @@ describe("ZwiftWorkoutOptimizer", () => {
         });
 
       expect(statistics).toEqual({
-        cooldownOrWarmupToIntervals: {
-          amount: 2,
-          durationSeconds: 2000,
+        cooldownToIntervals: {
+          amount: 1,
+          durationSeconds: 1080,
+        },
+        warmupToIntervals: {
+          amount: 1,
+          durationSeconds: 920,
         },
         steadyStateToIntervals: {
           amount: 7,
@@ -49,14 +53,19 @@ describe("ZwiftWorkoutOptimizer", () => {
         },
       });
       expect(optimizationResults).toEqual({
-        cooldownOrWarmupToIntervals: {
-          minutes: 33.333333333333336,
-          xp: 200,
+        warmupToIntervals: {
+          minutes: 15.333333333333334,
+          xp: 92,
+        },
+        cooldownToIntervals: {
+          minutes: 18,
+          xp: 108,
         },
         steadyStateToIntervals: {
           minutes: 27,
           xp: 54,
         },
+        totalMinutes: 60.333333333333334,
         totalXp: 254,
       });
     });
