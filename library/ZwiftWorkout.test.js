@@ -29,4 +29,16 @@ describe("ZwiftWorkout", () => {
       expect(workout.trainingBlocks).toEqual([]);
     });
   });
+
+  describe("addTag", () => {
+    test("getter should retrieve the workout tags", () => {
+      expect(workout.tags.length).toEqual(2);
+      expect(workout.tags).toMatchSnapshot();
+    });
+
+    test("should add one tag to the workout", () => {
+      workout.addTag("OtherTag");
+      expect(workout.tags.length).toEqual(3);
+    });
+  });
 });

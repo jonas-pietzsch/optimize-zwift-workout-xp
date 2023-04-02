@@ -46,6 +46,7 @@ export class ZwiftWorkoutOptimizer {
 
     workout.trainingBlocks = resultWorkoutBlocks;
     workout.name = workout.name += " (optimized)";
+    workout.addTag("XP optimized");
 
     const optimizationResults =
       ZwiftWorkoutOptimizer.calculateOptimizationResult(statistics);

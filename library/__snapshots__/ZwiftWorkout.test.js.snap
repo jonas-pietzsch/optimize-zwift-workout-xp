@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ZwiftWorkout addTag getter should retrieve the workout tags 1`] = `
+[
+  {
+    ":@": {
+      "attributename": "Some",
+    },
+    "tag": [],
+  },
+  {
+    ":@": {
+      "attributename": "Tags",
+    },
+    "tag": [],
+  },
+]
+`;
+
 exports[`ZwiftWorkout trainingBlocks getter should retrieve the training blocks 1`] = `
 [
   {

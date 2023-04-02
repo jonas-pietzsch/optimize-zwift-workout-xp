@@ -33,7 +33,26 @@ exports[`ZwiftWorkoutOptimizer optimize should return the optimized workout 1`] 
         ],
       },
       {
-        "tags": [],
+        "tags": [
+          {
+            ":@": {
+              "attributename": "Some",
+            },
+            "tag": [],
+          },
+          {
+            ":@": {
+              "attributename": "Tags",
+            },
+            "tag": [],
+          },
+          {
+            ":@": {
+              "attributename": "XP optimized",
+            },
+            "tag": [],
+          },
+        ],
       },
       {
         "workout": [

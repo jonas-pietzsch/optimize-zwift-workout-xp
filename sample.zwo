@@ -3,7 +3,10 @@
   <name>Something</name>
   <description>Some description</description>
   <sportType>bike</sportType>
-  <tags/>
+  <tags>
+      <tag name="Some"/>
+      <tag name="Tags"/>
+  </tags>
   <workout>
     <Warmup Duration="920" PowerHigh="0.65" PowerLow="0.45">
     </Warmup>

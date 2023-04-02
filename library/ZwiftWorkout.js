@@ -21,4 +21,19 @@ export class ZwiftWorkout {
     this.contents[0].workout_file.find((entry) => entry.name).name[0]["#text"] =
       val;
   }
+
+  get tags() {
+    return this.contents[0].workout_file.find((entry) => entry.tags).tags;
+  }
+
+  addTag(text) {
+    this.contents[0].workout_file
+      .find((entry) => entry.tags)
+      .tags.push({
+        tag: [],
+        ":@": {
+          attributename: text,
+        },
+      });
+  }
 }

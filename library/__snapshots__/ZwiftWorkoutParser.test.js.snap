@@ -33,7 +33,20 @@ exports[`ZwiftWorkoutParser should parse zwo file contents to an object structur
         ],
       },
       {
-        "tags": [],
+        "tags": [
+          {
+            ":@": {
+              "attributename": "Some",
+            },
+            "tag": [],
+          },
+          {
+            ":@": {
+              "attributename": "Tags",
+            },
+            "tag": [],
+          },
+        ],
       },
       {
         "workout": [

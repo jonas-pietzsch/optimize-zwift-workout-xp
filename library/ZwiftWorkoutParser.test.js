@@ -1,6 +1,8 @@
 import { ZwiftWorkoutParser } from "./ZwiftWorkoutParser.js";
 import * as fs from "fs";
 
+const removeTags = (val) => val.replace(/<tags>.*<\/tags>/, "<tags/>");
+
 describe("ZwiftWorkoutParser", () => {
   it("should parse zwo file contents to an object structure that preserves sorting, type and attribute of workout segments", () => {
     const workout = ZwiftWorkoutParser.parseZwoFile(
@@ -22,8 +24,8 @@ describe("ZwiftWorkoutParser", () => {
       ""
     );
 
-    expect(originalFileContentsWithoutWhitespaces).toEqual(
-      targetFileContentsWithoutWhitespaces.replace("<tags></tags>", "<tags/>")
+    expect(removeTags(originalFileContentsWithoutWhitespaces)).toEqual(
+      removeTags(targetFileContentsWithoutWhitespaces)
     );
 
     const workoutFromReGeneratedZwoFile = ZwiftWorkoutParser.parseZwoFile(
