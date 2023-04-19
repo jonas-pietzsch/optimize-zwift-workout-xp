@@ -4,10 +4,11 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
 
 export const Faq = () => {
   return (
-    <div>
+    <>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -17,22 +18,22 @@ export const Faq = () => {
           <Typography>What is this about and how does it work?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography sx={{ mb: 3 }}>
+          <Box sx={{ mb: 3 }}>
             <Typography typography={{ fontWeight: "bold" }}>Why?</Typography>{" "}
             You can gain more XP and therefore level faster on Zwift if workouts
             are specially arranged.
-          </Typography>
+          </Box>
 
-          <Typography sx={{ mb: 3 }}>
+          <Box sx={{ mb: 3 }}>
             <Typography typography={{ fontWeight: "bold" }}>What?</Typography>{" "}
             Zwift grants more XP for interval blocks than steady state, warmup
             or cooldown blocks. If you're getting your workouts from trainers
             via Intervals.icu, TrainingPeaks or creating them on your own, there
             are probably a lot of steady state, warmup or cooldown blocks used
             because that's essentially your prescribed training.
-          </Typography>
+          </Box>
 
-          <Typography sx={{ mb: 3 }}>
+          <Box sx={{ mb: 3 }}>
             <Typography typography={{ fontWeight: "bold" }}>How?</Typography>{" "}
             This tool modifies Zwift workout files (.zwo) so that they leverage
             several{" "}
@@ -40,15 +41,15 @@ export const Faq = () => {
               XP hacking approaches
             </a>
             . It will not change its intensity, duration or resulting workload!
-          </Typography>
+          </Box>
 
-          <Typography>
+          <Box>
             <Typography typography={{ fontWeight: "bold" }}>
               So what?
             </Typography>{" "}
             This tool makes little changes to your workouts so that you get more
             XP for the same amount of physical and mental work that you put in.
-          </Typography>
+          </Box>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -93,6 +94,6 @@ export const Faq = () => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-    </div>
+    </>
   );
 };
