@@ -53,6 +53,11 @@ yargs(hideBin(process.argv)).command(
         description:
           "whether to write optimized workout files to another file than the original input file",
       })
+      .option("addLinkToDescription", {
+        type: "boolean",
+        default: defaultOptions.addLinkToDescription,
+        description: "Add link of this tool in the workout description",
+      })
       .option("steadyStateReplacementBlockDuration", {
         type: "string",
         default:
@@ -81,6 +86,8 @@ yargs(hideBin(process.argv)).command(
       warmupOrCooldownReplacementBlockDuration,
 
       filepath,
+
+      addLinkToDescription,
     } = argv;
 
     const absoluteFilepath = [cwd(), filepath].join("/");
@@ -100,6 +107,7 @@ yargs(hideBin(process.argv)).command(
         replacementBlocksDurationSeconds:
           warmupOrCooldownReplacementBlockDuration,
       },
+      addLinkToDescription,
     };
     const { optimizedWorkout } = ZwiftWorkoutOptimizer.optimize(
       workout,

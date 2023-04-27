@@ -8,9 +8,10 @@ export const defaultOptions = {
     optimizeWarmup: true,
     optimizeCooldown: true,
     minimumDurationSeconds: 120,
-    replacementBlocksDurationSeconds: 30,
+    replacementBlocksDurationSeconds: 120,
   },
   skipReportOutput: false,
+  addLinkToDescription: true,
 };
 
 export const buildOptions = (customOptions) => {

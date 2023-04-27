@@ -200,6 +200,21 @@ export const OptionsStep = () => {
         </>
       ) : null}
       <Box sx={{ m: 3 }} />
+      <FormControlLabel
+        control={
+          <Checkbox
+            inputProps={{ "aria-label": "controlled" }}
+            checked={settings.addLinkToDescription}
+            onChange={(val) =>
+              setSettings({
+                ...settings,
+                addLinkToDescription: val.target.checked,
+              })
+            }
+          />
+        }
+        label="Add link of this tool in the workout description"
+      />
     </Box>
   );
 };

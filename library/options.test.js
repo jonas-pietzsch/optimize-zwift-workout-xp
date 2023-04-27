@@ -23,6 +23,7 @@ describe("options", () => {
       const result = buildOptions(customOptions);
 
       expect(result).toEqual({
+        addLinkToDescription: true,
         steadyStateBlocks: {
           optimize: false,
           minimumDurationSeconds: 120,
@@ -32,7 +33,7 @@ describe("options", () => {
           optimizeWarmup: false,
           optimizeCooldown: true,
           minimumDurationSeconds: 120,
-          replacementBlocksDurationSeconds: 30,
+          replacementBlocksDurationSeconds: 120,
         },
         skipReportOutput: false,
       });

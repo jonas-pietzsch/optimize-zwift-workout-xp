@@ -22,6 +22,17 @@ export class ZwiftWorkout {
       val;
   }
 
+  get description() {
+    return this.contents[0].workout_file.find((entry) => entry.description)
+      .description[0]["#text"];
+  }
+
+  set description(val) {
+    this.contents[0].workout_file.find(
+      (entry) => entry.description
+    ).description[0]["#text"] = val;
+  }
+
   get tags() {
     return this.contents[0].workout_file.find((entry) => entry.tags).tags;
   }

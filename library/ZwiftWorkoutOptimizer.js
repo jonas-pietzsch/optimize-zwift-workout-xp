@@ -48,6 +48,12 @@ export class ZwiftWorkoutOptimizer {
     workout.name = workout.name += " (optimized)";
     workout.addTag("XP optimized");
 
+    if (options.addLinkToDescription) {
+      workout.description =
+        workout.description +
+        `\nOptimized on XP by https://jonas.verhoelen.de/optimize-zwift-workout-xp/`;
+    }
+
     const optimizationResults =
       ZwiftWorkoutOptimizer.calculateOptimizationResult(statistics);
     if (!options.skipReportOutput) {

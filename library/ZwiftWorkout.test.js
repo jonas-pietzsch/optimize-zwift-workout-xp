@@ -19,6 +19,17 @@ describe("ZwiftWorkout", () => {
     });
   });
 
+  describe("description", () => {
+    test("getter should retrieve the workout description", () => {
+      expect(workout.description).toEqual("Some description");
+    });
+
+    test("setter should write the workout description", () => {
+      workout.description = "Some modified description";
+      expect(workout.description).toEqual("Some modified description");
+    });
+  });
+
   describe("trainingBlocks", () => {
     test("getter should retrieve the training blocks", () => {
       expect(workout.trainingBlocks).toMatchSnapshot();
