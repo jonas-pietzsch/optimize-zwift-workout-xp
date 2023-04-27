@@ -2,3 +2,4 @@ node_modules/
 coverage/
 .idea/
 *-optimized*.zwo
+.DS_Store
